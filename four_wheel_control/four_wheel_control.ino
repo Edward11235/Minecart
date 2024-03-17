@@ -15,8 +15,8 @@ boolean stringComplete = false;  // Whether the string is complete
 #define DIR3B 10  // Using A0 as a digital output
 // Motor 4
 #define ENA4 11
-#define DIR4A 12  // Using A1 as a digital output
-#define DIR4B 13  // Using A2 as a digital output
+#define DIR4A 13  // Using A1 as a digital output
+#define DIR4B 12  // Using A2 as a digital output
 
 void setup() {
   Serial.begin(9600);

@@ -27,7 +27,8 @@ def on_press(key):
             front_left = front_right = back_left = back_right = -255
         elif key == keyboard.Key.left:
             # Turn left
-            front_left = back_left = 100
+            front_left = 100
+            back_left = 130
             front_right = back_right = 255
         elif key == keyboard.Key.right:
             # Turn right
