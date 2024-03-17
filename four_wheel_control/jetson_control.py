@@ -31,9 +31,8 @@ def on_press(key):
             front_right = back_right = 255
         elif key == keyboard.Key.right:
             # Turn right
-            # front_left = back_left = 255
-            # front_right = back_right = 100
-            front_left = 255
+            front_left = back_left = 255
+            front_right = back_right = 100
         elif key == keyboard.Key.esc:
             # Exit listener
             return False
