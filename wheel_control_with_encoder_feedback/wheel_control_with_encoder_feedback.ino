@@ -3,9 +3,9 @@
 // Pins
 #define ENCA 2
 #define ENCB 3
-#define PWM 11
-#define IN1 10
-#define IN2 9
+#define PWM 4
+#define IN1 5
+#define IN2 6
 
 // globals
 long prevT = 0;
@@ -41,10 +41,10 @@ void loop() {
   // read the position in an atomic block
   // to avoid potential misreads
   int pos = 0;
-  float velocity2 = 0;
+  // float velocity1 = 0;
   ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
     pos = pos_i;
-    velocity2 = velocity_i;
+    // velocity1 = velocity_i;
   }
 
   // Compute velocity with method 1
@@ -56,17 +56,14 @@ void loop() {
 
   // Convert count/s to RPM
   float v1 = velocity1/784.0*60.0;
-  float v2 = velocity2/784.0*60.0;
 
   // Low-pass filter (25 Hz cutoff)
   v1Filt = 0.854*v1Filt + 0.0728*v1 + 0.0728*v1Prev;
   v1Prev = v1;
-  v2Filt = 0.854*v2Filt + 0.0728*v2 + 0.0728*v2Prev;
-  v2Prev = v2;
 
   // Set a target
-  float vt = 100*(sin(currT/1e6)>0);
-  // float vt = 10;
+  // float vt = 100*(sin(currT/1e6)>0);
+  float vt = 2;
 
   // Compute the control signal u
   float kp = 5;
@@ -86,12 +83,14 @@ void loop() {
     pwr = 255;
   }
   setMotor(dir,pwr,PWM,IN1,IN2);
-
-  Serial.print(vt);
-  Serial.print(" ");
-  Serial.print(v1Filt);
-  Serial.println();
-  delay(1);
+  // Serial.print(vt);
+  // Serial.print(" ");
+  // Serial.print(v1Filt);
+  // Serial.println();
+  // delay(1);
+  // Serial.println();
+  // Serial.print(velocity_i);
+  
 }
 
 void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
@@ -132,4 +131,6 @@ void readEncoder(){
   float deltaT = ((float) (currT - prevT_i))/1.0e6;
   velocity_i = increment/deltaT;
   prevT_i = currT;
+  Serial.print(velocity_i);
+  Serial.println();
 }
