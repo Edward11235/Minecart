@@ -2,28 +2,28 @@
 
 // Pins for each motor
 #define ENCA1 2
-#define ENCB1 3
-#define PWM1 4
-#define IN11 5
-#define IN21 6
+#define ENCB1 6
+#define PWM1 24
+#define IN11 22
+#define IN21 26
 
 #define ENCA2 7
-#define ENCB2 8
-#define PWM2 9
-#define IN12 10
-#define IN22 11
+#define ENCB2 3
+#define PWM2 32
+#define IN12 28
+#define IN22 30
 
-#define ENCA3 12
-#define ENCB3 13
-#define PWM3 14
-#define IN13 15
-#define IN23 16
+#define ENCA3 18
+#define ENCB3 15
+#define PWM3 36
+#define IN13 34
+#define IN23 32
 
-#define ENCA4 17
-#define ENCB4 18
-#define PWM4 19
-#define IN14 20
-#define IN24 21
+#define ENCA4 19
+#define ENCB4 16
+#define PWM4 38
+#define IN14 40
+#define IN24 42
 
 // Global variables for each motor
 struct Motor {
@@ -94,9 +94,10 @@ void loop() {
         }
     }
 
-    for (int i = 0; i < 4; i++) {
-        processMotor(motors[i], PWM1 + 5 * i, IN11 + 5 * i, IN21 + 5 * i);
-    }
+    processMotor(motors[0], PWM1, IN11, IN21);
+    processMotor(motors[1], PWM2, IN12, IN22);
+    processMotor(motors[2], PWM3, IN13, IN23);
+    processMotor(motors[3], PWM4, IN14, IN24);
 }
 
 void serialEvent() {

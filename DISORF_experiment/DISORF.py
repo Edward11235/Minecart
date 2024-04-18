@@ -4,8 +4,8 @@ import serial
 import time
 
 # Start SLAM process
-slam_command = './Examples/Monocular/mono_zed Vocabulary/ORBvoc.txt Examples/Monocular/zed_VGA.yaml'
-slam_directory = '/home/Desktop/DISORF-local-end'
+slam_command = './Examples/Monocular/mono_zed /home/disorf/Desktop/local_end/Vocabulary/ORBvoc.txt /home/disorf/Desktop/local_end/Examples/Monocular/zed.yaml'
+slam_directory = '/home/disorf/Desktop/local_end'
 subprocess.Popen(slam_command, shell=True, cwd=slam_directory)
 
 # Set up serial communication
