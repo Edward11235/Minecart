@@ -15,7 +15,7 @@ joystick = pygame.joystick.Joystick(0)
 joystick.init()
 
 # Replace 'COM_PORT' with your Bluetooth COM port
-serial_port = 'COM3'
+serial_port = '/dev/ttyACM0'
 baud_rate = 115200
 
 # Setup serial connection (adjust COM port as necessary)
@@ -25,7 +25,7 @@ time.sleep(2)  # Wait for the serial connection to initialize
 def send_speed(speed):
     """Send speed value to motor."""
     control_signal = [speed, speed, speed, speed]
-    message = "<[" + "][".join(map(str, nums)) + "]>"
+    message = "<[" + "][".join(map(str, control_signal)) + "]>"
     ser.write(message.encode())  # Send the message
 
 try:
@@ -34,13 +34,13 @@ try:
 
         # Get the vertical position of the left joystick (values range from -1 to 1)
         joystick_y = joystick.get_axis(1)  # Axis 1 is typically the vertical axis for the left joystick
-
+        # print(joystick_y)
         # Calculate speed based on joystick position
         if -0.1 < joystick_y < 0.1:  # Pushed to the top
            send_speed(0)
         else:
             speed_for_motor = 50*joystick_y
-            send_speed(speed_for_motor )  # Neutral position, you might want to adjust this behavior
+            send_speed(speed_for_motor)  # Neutral position, you might want to adjust this behavior
 
         time.sleep(0.1)  # Add a small delay to limit the command sending rate
 
