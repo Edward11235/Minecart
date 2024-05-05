@@ -19,11 +19,17 @@
 // #define IN1 36
 // #define IN2 38
 
-#define ENCA 19
-#define ENCB 15
-#define PWM 40
-#define IN1 42
-#define IN2 44
+// #define ENCA 19
+// #define ENCB 15
+// #define PWM 40
+// #define IN1 42
+// #define IN2 44
+
+#define ENCA 2
+#define ENCB 4
+#define PWM 7
+#define IN1 8
+#define IN2 9
 
 // Globals
 long prevT = 0;

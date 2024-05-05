@@ -15,7 +15,7 @@ joystick = pygame.joystick.Joystick(0)
 joystick.init()
 
 # Replace 'COM_PORT' with your Bluetooth COM port
-serial_port = 'COM3'
+serial_port = 'COM5'
 baud_rate = 115200
 
 # Setup serial connection (adjust COM port as necessary)
