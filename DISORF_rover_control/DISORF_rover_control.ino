@@ -1,29 +1,29 @@
 #include <util/atomic.h>
 
 // Pins for each motor
-#define ENCA1 2
-#define ENCB1 6
-#define PWM1 24
-#define IN11 22
-#define IN21 26
+#define ENCA4 2
+#define ENCB4 7
+#define PWM4 22
+#define IN14 24
+#define IN24 26
 
-#define ENCA2 7
-#define ENCB2 3
-#define PWM2 32
-#define IN12 28
-#define IN22 30
-
-#define ENCA3 18
-#define ENCB3 15
-#define PWM3 36
-#define IN13 34
+#define ENCA3 3
+#define ENCB3 6
+#define PWM3 28
+#define IN13 30
 #define IN23 32
 
-#define ENCA4 19
-#define ENCB4 16
-#define PWM4 38
-#define IN14 40
-#define IN24 42
+#define ENCA2 18
+#define ENCB2 14
+#define PWM2 34
+#define IN12 38
+#define IN22 36
+
+#define ENCA1 19
+#define ENCB1 15
+#define PWM1 40
+#define IN11 44
+#define IN21 42
 
 // Global variables for each motor
 struct Motor {
@@ -34,7 +34,7 @@ struct Motor {
     float vFilt = 0;
     float vPrev = 0;
     float eintegral = 0;
-    volatile float vt = 20; // Target velocity
+    volatile float vt = 250; // Target velocity
 };
 
 Motor motors[4];

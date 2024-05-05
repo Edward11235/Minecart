@@ -2,10 +2,10 @@
 
 // Pins
 #define ENCA 2
-#define ENCB 3
-#define PWM 4
-#define IN1 5
-#define IN2 6
+#define ENCB 7
+#define PWM 26
+#define IN1 24
+#define IN2 22
 
 // globals
 long prevT = 0;
@@ -63,7 +63,7 @@ void loop() {
 
   // Set a target
   // float vt = 100*(sin(currT/1e6)>0);
-  float vt = 2;
+  float vt = 1;
 
   // Compute the control signal u
   float kp = 5;
@@ -95,6 +95,8 @@ void loop() {
 
 void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
   analogWrite(pwm,pwmVal); // Motor speed
+  Serial.print(pwmVal);
+  Serial.println();
   if(dir == 1){ 
     // Turn one way
     digitalWrite(in1,HIGH);

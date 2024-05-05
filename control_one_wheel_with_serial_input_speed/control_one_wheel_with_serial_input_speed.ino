@@ -1,11 +1,29 @@
 #include <util/atomic.h>
 
 // Pins
-#define ENCA 2
-#define ENCB 3
-#define PWM 4
-#define IN1 5
-#define IN2 6
+// #define ENCA 2
+// #define ENCB 7
+// #define PWM 22
+// #define IN1 24
+// #define IN2 26
+
+// #define ENCA 3
+// #define ENCB 6
+// #define PWM 28
+// #define IN1 30
+// #define IN2 32
+
+// #define ENCA 18
+// #define ENCB 14
+// #define PWM 34
+// #define IN1 36
+// #define IN2 38
+
+#define ENCA 19
+#define ENCB 15
+#define PWM 40
+#define IN1 42
+#define IN2 44
 
 // Globals
 long prevT = 0;
@@ -24,7 +42,7 @@ float v2Prev = 0;
 float eintegral = 0;
 
 // Target velocity (vt) as a global variable
-volatile float vt = 20; // Default value
+volatile float vt = 5; // Default value
 
 // Serial communication
 String inputString = "";      // A String to hold incoming data
@@ -108,6 +126,9 @@ void serialEvent() {
 }
 
 void setMotor(int dir, int pwmVal, int pwm, int in1, int in2) {
+  
+  Serial.println(pwmVal);
+  
   analogWrite(pwm, pwmVal); // Motor speed
   if(dir == 1) { 
     digitalWrite(in1, HIGH);
@@ -122,6 +143,7 @@ void setMotor(int dir, int pwmVal, int pwm, int in1, int in2) {
 }
 
 void readEncoder() {
+  // Serial.println("sdfsdf");
   int b = digitalRead(ENCB);
   int increment = b > 0 ? 1 : -1;
   pos_i = pos_i + increment;
