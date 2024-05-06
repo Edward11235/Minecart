@@ -4,15 +4,15 @@
 #define ENCA1 2
 #define ENCB1 4
 #define PWM1 7
-#define IN11 8
-#define IN12 9
+#define IN11 9
+#define IN12 8
 
 // Pins for Wheel 2
 #define ENCA2 3
 #define ENCB2 5
 #define PWM2 10
-#define IN21 11
-#define IN22 12
+#define IN21 12
+#define IN22 11
 
 // Globals
 long prevT1 = 0, prevT2 = 0;
