@@ -33,13 +33,13 @@ def send_speed(speed, turn):
         turn (float): Turn value from the joystick's X-axis (-100 to 100).
     """
     # Calculate control signals for left and right wheels
-    control_signal_left = speed - turn
-    control_signal_right = speed + turn
+    control_signal_left = speed + turn
+    control_signal_right = speed - turn
 
     # Format the messages for left and right wheels
-    message_left = f"<[{control_signal_left}]>"
+    message_left = f"<[{-control_signal_left}]>"
     message_right = f"<[{control_signal_right}]>"
-
+    
     # Send the messages to the respective serial ports
     ser_1.write(message_left.encode())  # Send to left wheel motor
     time.sleep(0.01)  # Short delay to ensure serial communication stability
@@ -53,16 +53,17 @@ try:
         joystick_y = joystick.get_axis(1)  # Axis 1 is typically the vertical axis for the left joystick
         # Get the horizontal position of the left joystick
         joystick_x = joystick.get_axis(0)  # Axis 0 is typically the horizontal axis for the left joystick
+        # print(joystick_y, joystick_x)
 
         # Calculate speed based on joystick position
         if -0.1 < joystick_y < 0.1:  # Pushed to the top
            send_speed(0, 0)
         else:
-            speed_for_motor = int(100*joystick_y)
+            speed_for_motor = int(50*joystick_y)
             if -0.1 < joystick_x < 0.1:
                 send_speed(speed_for_motor, 0)
             else:
-                turn_for_motor = int(50*joystick_x)
+                turn_for_motor = int(20*joystick_x)
                 send_speed(speed_for_motor, turn_for_motor)
             
         time.sleep(0.1)  # Add a small delay to limit the command sending rate
